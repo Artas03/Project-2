@@ -1,6 +1,6 @@
 flask
 pymysql
-flask_sqlalchemy
+Flask_SQLAlchemy
 requests
 SQLAlchemy
 pytest
