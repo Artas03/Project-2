@@ -9,6 +9,8 @@ services:
        published: 5000
     environment: 
        DATABASE_URI: ${DATABASE_URI}
+    deploy:
+      replicas: 3
 
   make_api:
     container_name: make_api
@@ -16,6 +18,8 @@ services:
     build: ./make_api
     ports:
       - target: 5001
+    deploy:
+      replicas: 3
 
   model_api:
     container_name: model_api
@@ -23,6 +27,8 @@ services:
     build: ./model_api
     ports:
       - target: 5002
+    deploy:
+      replicas: 3
 
   mot_api:
     container_name: mot_api
@@ -30,4 +36,6 @@ services:
     build: ./mot_api
     ports:
       - target: 5003
+    deploy:
+      replicas: 3
 
