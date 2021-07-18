@@ -1,0 +1,20 @@
+- hosts: managers
+  become: true
+  roles:
+  - docker
+  - manager
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+- hosts: workers
+  become: true
+  roles:
+  - docker
+  - worker
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+- hosts: nginx
+  become: true
+  roles: 
+  - nginx
