@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_USERNAME = credentials('DOCKER_USERNAME')
+        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+        install = "false"
+        DATABASE_URI = credentials("DATABASE_URI")
+    }
+    stages {
+        stage("Install requirements") {
+            steps {
+                script{
+                    if (env.install == 'false'){
+                        sh "bash jenkins/install-reuirements.sh"
+                    }
+                }
+            }
+        }
+        stage("Test") {
+            steps {
+                // pytest
+                // each service run
+                // make cov reports
+                sh "bash jenkins/test.sh"
+            }
+        }
+        stage("Build") {
+            steps {
+                // install docker and docker-compose
+                // docker-compose build 
+                sh "docker-compose build"
+            }
+        }
+        stage("Push") {
+            steps {
+                // push docker-compose
+                sh "docker-compose push"
+            }
+        }
+        stage("Config Management (Ansible)") {
+            steps {
+                // installing ansible on the jenkins machine
+                sh "cd ansible && ~/.local/bin/ansible-playbook -i inventory.yaml playbook.yaml"
+            }
+        }
+        stage("Deploy") {
+            steps {
+                // create swarm
+                // copy docker-compose.yaml
+                // docker stack deploy
+                sh "bash jenkins/deploy.sh"
+            }
+        }
+    }
+}
