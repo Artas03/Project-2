@@ -49,6 +49,7 @@ pipeline {
                 // copy docker-compose.yaml
                 // docker stack deploy
                 // "bash jenkins/deploy.sh"
+                sh "pip install ansible"
                 ansiblePlaybook credentialsId: 'ef6a5a50-0f0d-4586-8e54-a6d8084a9cde', installation: 'ansible1', inventory: 'ansible/inventory.yaml', playbook: 'ansible/playbook.yaml'
             }
         }
