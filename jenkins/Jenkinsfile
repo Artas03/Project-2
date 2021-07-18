@@ -48,8 +48,8 @@ pipeline {
                 // create swarm
                 // copy docker-compose.yaml
                 // docker stack deploy
-                // sh "bash jenkins/deploy.sh"
-                ansiblePlaybook credentialsId: 'ef6a5a50-0f0d-4586-8e54-a6d8084a9cde', installation: 'ansible1', inventory: 'ansible/inventory.yaml', playbook: 'ansible/playbook.yaml'
+                sh "bash jenkins/deploy.sh"
+                // ansiblePlaybook credentialsId: 'ef6a5a50-0f0d-4586-8e54-a6d8084a9cde', installation: 'ansible1', inventory: 'ansible/inventory.yaml', playbook: 'ansible/playbook.yaml'
             }
         }
     }
