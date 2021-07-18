@@ -16,6 +16,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 mkdir -p ~/.local/bin
 echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
 source ~/.bashrc
+python -m pip install -U pip
 sudo apt install python3-pip -y
 pip3 install --user ansible
 ansible --version
