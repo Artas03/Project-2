@@ -46,6 +46,6 @@
 
 - name: Add a jenkins user
   ansible.builtin.user:
-    name: Artas
+    name: jenkins
     groups: docker
     append: yes
