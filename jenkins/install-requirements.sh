@@ -16,7 +16,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 mkdir -p ~/.local/bin
 echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
 source ~/.bashrc
-sudo su -
+sudo su - jenkins
 usermod -a -G sudo jenkins
 sudo apt install python3-pip3 -y
 pip3 install --user ansible
