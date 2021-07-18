@@ -50,9 +50,9 @@ pipeline {
                 // docker stack deploy
                 // "bash jenkins/deploy.sh"
                 sh "sudo apt update"
-                sh "sudo apt install software-properties-common"
+                sh "sudo apt install software-properties-common -y"
                 sh "sudo apt-add-repository --yes --update ppa:ansible/ansible"
-                sh "sudo apt install ansible"
+                sh "sudo apt install ansible -y"
                 sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
             }
         }
