@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script{
                     if (env.install == 'false'){
-                        sh "bash jenkins/install-reuirements.sh"
+                        sh "bash jenkins/install-requirements.sh"
                     }
                 }
             }
