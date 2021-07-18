@@ -1,0 +1,5 @@
+---
+# vars file for worker
+all:
+  hosts:
+    34.142.20.244:
