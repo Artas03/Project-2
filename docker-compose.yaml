@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  service-1:
+    container_name: service-1
+    image: artas03/project-2-service-1-frontend
+    build: ./service-1
+    ports:
+     - target: 5000
+       published: 5000
+    environment: 
+       DATABASE_URI: ${DATABASE_URI}
+    deploy:
+      replicas: 3
+
+  make_api:
+    container_name: make_api
+    image: artas03/project-2-service-2-backend
+    build: ./make_api
+    ports:
+      - target: 5001
+    deploy:
+      replicas: 3
+
+  model_api:
+    container_name: model_api
+    image: artas03/project-2-service-3-backend
+    build: ./model_api
+    ports:
+      - target: 5002
+    deploy:
+      replicas: 3
+
+  mot_api:
+    container_name: mot_api
+    image: artas03/project-2-service-4-backend
+    build: ./mot_api
+    ports:
+      - target: 5003
+    deploy:
+      replicas: 3
+
