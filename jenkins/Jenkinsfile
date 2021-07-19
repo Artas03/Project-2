@@ -19,9 +19,8 @@ pipeline {
         stage("Test") {
             steps {
                 // pytest
-                // each service run
-                // make cov reports
-                sh "bash jenkins/test.sh"
+                // generating coverage reports
+                sh "bash jenkins/testing.sh"
             }
         }
         stage("Build") {
@@ -33,14 +32,14 @@ pipeline {
         }
         stage("Push") {
             steps {
-                // push docker-compose
+                // pushing docker-compose images
                 sh "docker-compose push"
             }
         }
         stage("Config Management (Ansible)") {
             steps {
                 // installing ansible on the jenkins machine
-                sh "bash jenkins/ansible.sh"
+                sh "bash jenkins/ansible-exc.sh"
             }
         }
         stage("Deploy") {
@@ -48,11 +47,6 @@ pipeline {
                 // create swarm
                 // copy docker-compose.yaml
                 // docker stack deploy
-                // "bash jenkins/deploy.sh"
-                sh "sudo apt update"
-                sh "sudo apt install software-properties-common -y"
-                sh "sudo apt-add-repository --yes --update ppa:ansible/ansible"
-                sh "sudo apt install ansible -y"
                 sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
             }
         }
